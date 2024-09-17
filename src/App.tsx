@@ -1,5 +1,5 @@
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
-import Labs from "./Labs/TOC";
+import Labs from "./Labs";
 import Kanbas from "./Kanbas";
 import './App.css';
 
