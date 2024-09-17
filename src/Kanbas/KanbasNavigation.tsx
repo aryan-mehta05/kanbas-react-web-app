@@ -7,6 +7,7 @@ const KanbasNavigation = () => {
         href="https://www.northeastern.edu/"
         id="wd-neu-link"
         target="_blank"
+        rel="nonreferrer"
       >
         Northeastern
       </a><br />

@@ -7,7 +7,11 @@ const Dashboard = () => {
       <h2 id="wd-dashboard-published">Published Courses (11)</h2><hr />
       <div id="wd-dashboard-courses">
         <div className="wd-dashboard-course">
-          <img src="/images/reactjs.jpg" width={200} />
+          <img
+            src="/images/reactjs.jpg"
+            alt="Course-cover-image"
+            width={200}
+          />
           <div>
             <Link
               to="/Kanbas/Courses/1234/Home"
