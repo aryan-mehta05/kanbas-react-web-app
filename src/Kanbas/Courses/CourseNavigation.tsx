@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const CourseNavigation = () => {
   return (
-    <div id="wd-courses-navigation" className="wd list-group fs-5 rounded-0">
+    <div id="wd-courses-navigation" className="wd list-group fs-5 rounded-0 me-5">
       <Link
         id="wd-course-home-link"
         to="/Kanbas/Courses/1234/Home"
