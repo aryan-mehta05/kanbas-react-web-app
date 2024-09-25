@@ -1,0 +1,19 @@
+.text-light-green {
+  color: #6EC207;
+}
+
+.assignments-controls-container {
+  height: 50px;
+}
+
+.wd-assignment-link {
+  color: black;
+  font-weight: bold;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 1.25rem;
+}

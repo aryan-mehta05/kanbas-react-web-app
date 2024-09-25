@@ -32,6 +32,10 @@ body * {
   border-left: 3px solid green !important;
 }
 
+.wd-assignment-list-item {
+  border-left: 3px solid green !important;
+}
+
 @media (min-width: 768px) {
   #wd-kanbas .wd-main-content-offset {
     padding-left: 140px !important;

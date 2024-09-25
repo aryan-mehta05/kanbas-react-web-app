@@ -5,10 +5,11 @@ import Home from "./Home";
 import Assignments from "./Assignments";
 import AssignmentEditor from "./Assignments/AssignmentEditor";
 import { FaAlignJustify } from "react-icons/fa";
+import PeopleTable from "./People/PeopleTable";
 
 const Courses = () => {
   return (
-    <div id="wd-courses">
+    <div id="wd-courses" className="me-5">
       <h2 className="text-danger">
         <FaAlignJustify className="me-4 fs-4 mb-1" />
         Course 1234
@@ -59,7 +60,7 @@ const Courses = () => {
             />
             <Route
               path="People"
-              element={<h2>People</h2>}
+              element={<PeopleTable />}
             />
           </Routes>
         </div>
