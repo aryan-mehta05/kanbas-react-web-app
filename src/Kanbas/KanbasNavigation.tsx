@@ -25,7 +25,7 @@ const KanbasNavigation = () => {
         id="wd-account-link"
         className="list-group-item text-center border-0 bg-black text-white"
       >
-        <FaRegCircleUser className="fs-1 text text-white" /><br />
+        <FaRegCircleUser className="fs-1 text-white" /><br />
         Account
       </Link>
       <Link
