@@ -2,50 +2,61 @@ import { Link } from "react-router-dom";
 
 const Profile = () => {
   return (
-    <div id="wd-profile-screen">
-      <h3>Profile</h3>
+    <div id="wd-profile-screen" style={{ width: "400px" }}>
+      <h1>Profile</h1>
       <input
         id="wd-username"
-        value="aryan"
+        defaultValue="Aryan"
         type="text"
         placeholder="Username"
-      /><br />
+        className="form-control mb-2"
+      />
       <input
         id="wd-password"
-        value="123"
+        defaultValue="123456"
         type="password"
         placeholder="Password"
-      /><br />
+        className="form-control mb-2"
+      />
       <input
         id="wd-firstname"
-        value="Aryan"
+        defaultValue="Aryan"
         type="text"
         placeholder="First Name"
-      /><br />
+        className="form-control mb-2"
+      />
       <input
         id="wd-lastname"
-        value="Mehta"
+        defaultValue="Mehta"
         type="text"
         placeholder="Last Name"
-      /><br />
+        className="form-control mb-2"
+      />
       <input
         id="wd-dob"
-        value="2000-12-05"
+        defaultValue="2000-12-05"
         type="date"
-      /><br />
+        className="form-control mb-2"
+      />
       <input
         id="wd-email"
-        value="mehta.aryan@northeastern.edu"
+        defaultValue="mehta.aryan@northeastern.edu"
         type="email"
         placeholder="your.email@example.com"
-      /><br />
-      <select id="wd-role">
+        className="form-control mb-2"
+      />
+      <select id="wd-role" className="form-select mb-2">
         <option value="USER">User</option>
         <option value="ADMIN">Admin</option>
         <option value="FACULTY">Faculty</option>
         <option value="STUDENT">Student</option>
-      </select><br />
-      <Link to="/Kanbas/Account/Signin">Sign out</Link>
+      </select>
+      <Link
+        to="/Kanbas/Account/Signin"
+        className="btn btn-danger w-100 mb-2"
+      >
+        Sign out
+      </Link>
     </div>
   );
 };
