@@ -18,11 +18,6 @@
   font-size: 1.25rem;
 }
 
-.spacer {
-  height: 20px; /* Adjust height for desired gap */
-  background-color: transparent; /* Optional: make the spacer row invisible */
-}
-
 /* Extra classes defined only for the "Assign to" div to look exactly like the UI in the question sheet */
 .custom-input {
   display: block;
