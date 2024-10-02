@@ -45,7 +45,7 @@ const Profile = () => {
         placeholder="your.email@example.com"
         className="form-control mb-2"
       />
-      <select id="wd-role" className="form-select mb-2">
+      <select id="wd-role" className="form-select mb-2" defaultValue="USER">
         <option value="USER">User</option>
         <option value="ADMIN">Admin</option>
         <option value="FACULTY">Faculty</option>

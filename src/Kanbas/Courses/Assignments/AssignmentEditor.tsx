@@ -1,3 +1,4 @@
+import { RxCross2 } from "react-icons/rx";
 import "./index.css";
 
 const AssignmentEditor = () => {
@@ -24,7 +25,7 @@ const AssignmentEditor = () => {
       <input
         type="text"
         id="wd-assignment-name"
-        value="A1 - ENV + HTML"
+        defaultValue="A1 - ENV + HTML"
         className="form-control mb-4"
       />
       <textarea id="wd-description" rows={14} cols={50} className="form-control w-100" defaultValue={defaultAssignmentDescription} />
@@ -37,20 +38,22 @@ const AssignmentEditor = () => {
           <td>
             <input id="wd-points" className="form-control" defaultValue={100} />
           </td>
-        </tr><br />
+        </tr>
+        <tr className="spacer"></tr>
         <tr>
           <td align="right" valign="top">
             <label htmlFor="wd-group" className="form-label me-3">Assignment Group</label>
           </td>
           <td>
-            <select id="wd-group" className="form-select fs-6 py-2 w-100">
+            <select id="wd-group" className="form-select fs-6 py-2 w-100" defaultValue="ASSIGNMENTS">
               <option value="ASSIGNMENTS">ASSIGNMENTS</option>
               <option value="OPTION 1">OPTION 1</option>
               <option value="OPTION 2">OPTION 2</option>
               <option value="OPTION 3">OPTION 3</option>
             </select>
           </td>
-        </tr><br />
+        </tr>
+        <tr className="spacer"></tr>
         <tr>
           <td align="right" valign="top">
             <label htmlFor="wd-display-grade-as" className="form-label me-3">Display Grade as</label>
@@ -63,7 +66,8 @@ const AssignmentEditor = () => {
               <option value="OPTION 3">OPTION 3</option>
             </select>
           </td>
-        </tr><br />
+        </tr>
+        <tr className="spacer"></tr>
         <tr>
           <td align="right" valign="top">
             <label htmlFor="wd-submission-type" className="form-label me-3">Submission Type</label>
@@ -74,9 +78,9 @@ const AssignmentEditor = () => {
               <option value="OPTION 1">OPTION 1</option>
               <option value="OPTION 2">OPTION 2</option>
               <option value="OPTION 3">OPTION 3</option>
-            </select><br />
+            </select>
 
-            <label className="form-label fw-bold mb-3">Online Entry Options</label><br/>
+            <p className="form-label fs-5 fw-bold mt-4">Online Entry Options</p>
             
             <input
               type="checkbox"
@@ -128,20 +132,34 @@ const AssignmentEditor = () => {
               File Uploads
             </label>
           </td>
-        </tr><br />
+        </tr>
+        <tr className="spacer"></tr>
 
         <tr>
           <td align="right" valign="top">
             <label htmlFor="wd-assign-to" className="form-label me-3">Assign</label>
           </td>
           <td className="form-control p-3">
-            <label htmlFor="wd-assign-to" className="form-label fw-bold mb-0">Assign to</label><br />
-            <input
+            <label htmlFor="wd-assign-to" className="form-label fw-bold mb-0">Assign to</label>
+            {/* The code below is supposed to be a dummy implementation of the element in the question sheet as an input */}
+            {/* <input
               type="text"
               id="wd-assign-to"
               defaultValue="Everyone"
               className="form-control"
-            />
+            /> */}
+
+            {/* Since Assignment 2 is CSS + Bootstrap, the following div is an attempt to match what the question sheet displays to bring the UI as close to the requirements as possible. */}
+            <div id="wd-assign-to" className="custom-input">
+              <div className="d-flex justify-content-between align-items-center bg-custom-gray" style={{ width: "120px" }}>
+                <p className="m-0 px-2">
+                  Everyone
+                </p>
+                <div className="me-2">
+                  <RxCross2 className="fs-6 text-dark" />
+                </div>
+              </div>
+            </div>
 
             <label htmlFor="wd-due-date" className="form-label mt-3 fw-bold mb-0">
               Due
@@ -183,6 +201,7 @@ const AssignmentEditor = () => {
             </div>
           </td>
         </tr>
+        <tr className="spacer"></tr>
       </table>
 
       <hr />
