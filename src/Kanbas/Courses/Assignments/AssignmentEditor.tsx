@@ -19,60 +19,62 @@ const AssignmentEditor = () => {
   
   return (
     <div id="wd-assignments-editor" className="form-group">
-      <label htmlFor="wd-assignment-name" className="form-label">
-        <h3>Assignment Name</h3>
-      </label>
-      <input
-        type="text"
-        id="wd-assignment-name"
-        defaultValue="A1 - ENV + HTML"
-        className="form-control mb-4"
-      />
-      <textarea id="wd-description" rows={14} cols={50} className="form-control w-100" defaultValue={defaultAssignmentDescription} />
+      <div className="w-100">
+        <label htmlFor="wd-assignment-name" className="form-label">
+          <h3>Assignment Name</h3>
+        </label>
+        <input
+          type="text"
+          id="wd-assignment-name"
+          defaultValue="A1 - ENV + HTML"
+          className="form-control mb-4"
+        />
+        <textarea id="wd-description" rows={14} cols={50} className="form-control w-100" defaultValue={defaultAssignmentDescription} />
+      </div>
 
-      <table width="100%" className="mt-4">
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-points" className="form-label me-3">Points</label>
-          </td>
-          <td>
+      <div className="mt-3 container-fluid">
+        <div className="row mb-3">
+          <div className="col-2 d-flex justify-content-end">
+            <label htmlFor="wd-points" className="form-label">Points</label>
+          </div>
+          <div className="col-10 m-0 p-0">
             <input id="wd-points" className="form-control" defaultValue={100} />
-          </td>
-        </tr>
-        <tr className="spacer"></tr>
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-group" className="form-label me-3">Assignment Group</label>
-          </td>
-          <td>
+          </div>
+        </div>
+        
+        <div className="row mb-3">
+          <div className="col-2 d-flex justify-content-end">
+            <label htmlFor="wd-group" className="form-label">Assignment Group</label>
+          </div>
+          <div className="col-10 m-0 p-0">
             <select id="wd-group" className="form-select fs-6 py-2 w-100" defaultValue="ASSIGNMENTS">
               <option value="ASSIGNMENTS">ASSIGNMENTS</option>
               <option value="OPTION 1">OPTION 1</option>
               <option value="OPTION 2">OPTION 2</option>
               <option value="OPTION 3">OPTION 3</option>
             </select>
-          </td>
-        </tr>
-        <tr className="spacer"></tr>
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-display-grade-as" className="form-label me-3">Display Grade as</label>
-          </td>
-          <td>
+          </div>
+        </div>
+
+        <div className="row mb-3">
+          <div className="col-2 d-flex justify-content-end">
+            <label htmlFor="wd-display-grade-as" className="form-label">Display Grade as</label>
+          </div>
+          <div className="col-10 m-0 p-0">
             <select id="wd-display-grade-as" className="form-select fs-6 py-2 w-100">
               <option value="Percentage">Percentage</option>
               <option value="OPTION 1">OPTION 1</option>
               <option value="OPTION 2">OPTION 2</option>
               <option value="OPTION 3">OPTION 3</option>
             </select>
-          </td>
-        </tr>
-        <tr className="spacer"></tr>
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-submission-type" className="form-label me-3">Submission Type</label>
-          </td>
-          <td className="form-control p-3">
+          </div>
+        </div>
+        
+        <div className="row mb-3">
+          <div className="col-2 d-flex justify-content-end">
+            <label htmlFor="wd-submission-type" className="form-label">Submission Type</label>
+          </div>
+          <div className="col-10 border rounded p-3">
             <select id="wd-submission-type" className="form-select fs-6 p-2 w-100">
               <option value="Online">Online</option>
               <option value="OPTION 1">OPTION 1</option>
@@ -80,66 +82,67 @@ const AssignmentEditor = () => {
               <option value="OPTION 3">OPTION 3</option>
             </select>
 
-            <p className="form-label fs-5 fw-bold mt-4">Online Entry Options</p>
-            
-            <input
-              type="checkbox"
-              name="check-entry-options"
-              id="wd-text-entry"
-              className="me-2"
-            />
-            <label htmlFor="wd-text-entry" className="form-label">
-              Text Entry
-            </label><br/>
+            <div>
+              <p className="form-label fs-5 fw-bold mt-4">Online Entry Options</p>
+              
+              <input
+                type="checkbox"
+                name="check-entry-options"
+                id="wd-text-entry"
+                className="me-2"
+              />
+              <label htmlFor="wd-text-entry" className="form-label">
+                Text Entry
+              </label><br/>
 
-            <input
-              type="checkbox"
-              name="check-entry-options"
-              id="wd-website-url"
-              className="me-2"
-            />
-            <label htmlFor="wd-website-url" className="form-label">
-              Website URL
-            </label><br/>
+              <input
+                type="checkbox"
+                name="check-entry-options"
+                id="wd-website-url"
+                className="me-2"
+              />
+              <label htmlFor="wd-website-url" className="form-label">
+                Website URL
+              </label><br/>
 
-            <input
-              type="checkbox"
-              name="check-entry-options"
-              id="wd-media-recordings"
-              className="me-2"
-            />
-            <label htmlFor="wd-media-recordings" className="form-label">
-              Media Recordings
-            </label><br/>
+              <input
+                type="checkbox"
+                name="check-entry-options"
+                id="wd-media-recordings"
+                className="me-2"
+              />
+              <label htmlFor="wd-media-recordings" className="form-label">
+                Media Recordings
+              </label><br/>
 
-            <input
-              type="checkbox"
-              name="check-entry-options"
-              id="wd-student-annotation"
-              className="me-2"
-            />
-            <label htmlFor="wd-student-annotation" className="form-label">
-              Student Annotation
-            </label><br/>
+              <input
+                type="checkbox"
+                name="check-entry-options"
+                id="wd-student-annotation"
+                className="me-2"
+              />
+              <label htmlFor="wd-student-annotation" className="form-label">
+                Student Annotation
+              </label><br/>
 
-            <input
-              type="checkbox"
-              name="check-entry-options"
-              id="wd-file-upload"
-              className="me-2"
-            />
-            <label htmlFor="wd-file-upload" className="form-label">
-              File Uploads
-            </label>
-          </td>
-        </tr>
-        <tr className="spacer"></tr>
+              <input
+                type="checkbox"
+                name="check-entry-options"
+                id="wd-file-upload"
+                className="me-2"
+              />
+              <label htmlFor="wd-file-upload" className="form-label">
+                File Uploads
+              </label>
+            </div>
+          </div>
+        </div>
 
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-assign-to" className="form-label me-3">Assign</label>
-          </td>
-          <td className="form-control p-3">
+        <div className="row">
+          <div className="col-2 d-flex justify-content-end">
+            <label htmlFor="wd-assign-to" className="form-label">Assign</label>
+          </div>
+          <div className="col-10 border rounded p-3">
             <label htmlFor="wd-assign-to" className="form-label fw-bold mb-0">Assign to</label>
             {/* The code below is supposed to be a dummy implementation of the element in the question sheet as an input */}
             {/* <input
@@ -199,10 +202,11 @@ const AssignmentEditor = () => {
                 />
               </div>
             </div>
-          </td>
-        </tr>
-        <tr className="spacer"></tr>
-      </table>
+          </div>
+        </div>
+      </div>
+        
+
 
       <hr />
 
