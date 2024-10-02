@@ -150,7 +150,7 @@ const Lab1 = () => {
           <input
             type="password"
             id="wd-text-fields-password"
-            value="Aryan@123#"
+            defaultValue="Aryan@123#"
           /> <br />
           <label htmlFor="wd-text-fields-first-name">
             First name:
@@ -159,7 +159,7 @@ const Lab1 = () => {
             type="text"
             id="wd-text-fields-first-name"
             placeholder="Aryan"
-            value="Aryan"
+            defaultValue="Aryan"
             title="The first name"
           /> <br />
           <label htmlFor="wd-text-fields-last-name">
@@ -169,7 +169,7 @@ const Lab1 = () => {
             type="text"
             id="wd-text-fields-last-name"
             placeholder="Mehta"
-            value="Mehta"
+            defaultValue="Mehta"
             title="The last name"
           />
 
@@ -327,7 +327,7 @@ const Lab1 = () => {
             type="number"
             id="wd-text-fields-salary-start"
             placeholder="1000"
-            value="100000"
+            defaultValue="100000"
           /><br/>
 
           <label htmlFor="wd-text-fields-rating">
@@ -347,7 +347,7 @@ const Lab1 = () => {
           <input
             type="date"
             id="wd-text-fields-dob"
-            value="2000-12-05"
+            defaultValue="2000-12-05"
           /><br/>
         </form>
 
