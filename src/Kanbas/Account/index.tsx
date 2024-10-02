@@ -16,7 +16,7 @@ const Account = () => {
               <Route
                 path="/"
                 element={
-                  <Navigate to="/Kanbas/Account/Signin" />
+                  <Navigate to="/Kanbas/Dashboard" />
                 }
               />
               <Route
