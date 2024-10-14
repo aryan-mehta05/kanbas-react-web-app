@@ -13,7 +13,7 @@ const Kanbas = () => {
         <Routes>
           <Route
             path="/"
-            element={<Navigate to="Account" />}
+            element={<Navigate to="Dashboard" />}
           />
           <Route
             path="/Account/*"
