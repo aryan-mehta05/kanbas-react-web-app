@@ -12,7 +12,10 @@ This repository contains my code for the Labs and Assignments to be submitted as
 
 * A1 - [Netlify deployed link](https://a1--wonderful-yeot-c88b8d.netlify.app/#/Labs/Lab1)
 * A2 - [Netlify deployed link](https://a2--wonderful-yeot-c88b8d.netlify.app/#/Labs/Lab1)
-* A3 - Coming soon...
+* A3 - [Netlify deployed link](https://a3--wonderful-yeot-c88b8d.netlify.app/#/Labs/Lab1)
+* A4 - _Coming soon..._
+* A5 - _Coming soon..._
+* A6 - _Coming soon..._
 
 In the project directory, you can run:
 
