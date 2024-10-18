@@ -9,8 +9,9 @@ const CourseNavigation = () => {
   
   return (
     <div id="wd-courses-navigation" className="wd list-group fs-5 rounded-0 me-5">
-      {links.map((link) => (
+      {links.map((link, idx) => (
         <Link
+          key={idx}
           id="wd-course-home-link"
           to={`/Kanbas/Courses/${course?._id}/${link}`}
           className={`list-group-item border border-0 ${

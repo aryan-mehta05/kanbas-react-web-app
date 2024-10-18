@@ -1,7 +1,14 @@
 import { RxCross2 } from "react-icons/rx";
 import "./index.css";
+import { useParams } from "react-router";
+import * as db from "../../Database";
+import { Link } from "react-router-dom";
 
 const AssignmentEditor = () => {
+  const { aid, cid } = useParams();
+  const assignments = db.assignments;
+  const assignment = assignments.find((assignment: any) => assignment._id === aid)
+  
   const defaultAssignmentDescription = `
   This assignment is available online
   
@@ -16,7 +23,7 @@ const AssignmentEditor = () => {
   
   The Kanbas application should include a link to navigate back to the landing page.
   `
-  
+
   return (
     <div id="wd-assignments-editor" className="form-group">
       <div className="w-100">
@@ -26,7 +33,7 @@ const AssignmentEditor = () => {
         <input
           type="text"
           id="wd-assignment-name"
-          defaultValue="A1 - ENV + HTML"
+          defaultValue={`${assignment?.title}`}
           className="form-control mb-4"
         />
         <textarea id="wd-description" rows={14} cols={50} className="form-control w-100" defaultValue={defaultAssignmentDescription} />
@@ -205,18 +212,22 @@ const AssignmentEditor = () => {
           </div>
         </div>
       </div>
-        
-
 
       <hr />
 
       <div className="d-flex justify-content-end gap-1">
-        <button className="btn btn-lg btn-secondary">
+        <Link
+          className="btn btn-lg btn-secondary"
+          to={`/Kanbas/Courses/${cid}/Assignments`}
+        >
           Cancel
-        </button>
-        <button className="btn btn-lg btn-danger">
+        </Link>
+        <Link
+          className="btn btn-lg btn-danger"
+          to={`/Kanbas/Courses/${cid}/Assignments`}
+        >
           Save
-        </button>
+        </Link>
       </div>
     </div>
   );
