@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+
 import Add from "./Add";
 import AddingAndRemovingToFromArrays from "./AddingAndRemovingToFromArrays";
 import ArrayIndexAndLength from "./ArrayIndexAndLength";
@@ -32,10 +34,19 @@ import VariableTypes from "./VariableTypes";
 
 const Lab3 = () => {
   console.log('Hello World!');
+  const { todos } = useSelector((state: any) => state.todosReducer)
   
   return (
     <div id="wd-lab3">
       <h2>Lab 3</h2>
+      <ul className="list-group">
+        {todos.map((todo: any) => (
+          <li className="list-group-item" key={todo.id}>
+            {todo.title}
+          </li>
+        ))}
+      </ul>
+      <hr />
       <VariablesAndConstants />
       <VariableTypes />
       <BooleanVariables />

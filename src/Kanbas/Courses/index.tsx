@@ -1,14 +1,14 @@
-import { courses } from "../Database";
-import { Navigate, Route, Routes, useParams, useLocation } from "react-router";
-import Modules from "./Modules";
-import CoursesNavigation from "./CourseNavigation";
-import Home from "./Home";
-import Assignments from "./Assignments";
-import AssignmentEditor from "./Assignments/AssignmentEditor";
-import { FaAlignJustify } from "react-icons/fa";
-import PeopleTable from "./People/PeopleTable";
 
-const Courses = () => {
+import { Navigate, Route, Routes, useParams, useLocation } from "react-router";
+import { FaAlignJustify } from "react-icons/fa";
+import Home from "./Home";
+import Modules from "./Modules";
+import Assignments from "./Assignments";
+import PeopleTable from "./People/PeopleTable";
+import CoursesNavigation from "./CourseNavigation";
+import AssignmentEditor from "./Assignments/AssignmentEditor";
+
+const Courses = ({ courses }: { courses: any[]; }) => {
   const { cid } = useParams();
   const course = courses.find((course) => course._id === cid);
   const { pathname } = useLocation();
