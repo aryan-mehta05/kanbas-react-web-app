@@ -1,28 +1,22 @@
-import { RxCross2 } from "react-icons/rx";
-import "./index.css";
-import { useParams } from "react-router";
-import * as db from "../../Database";
 import { Link } from "react-router-dom";
+import { RxCross2 } from "react-icons/rx";
+import { useParams } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+
+import "./index.css";
 
 const AssignmentEditor = () => {
   const { aid, cid } = useParams();
-  const assignments = db.assignments;
-  const assignment = assignments.find((assignment: any) => assignment._id === aid)
-  
-  const defaultAssignmentDescription = `
-  This assignment is available online
-  
-  Submit a link to the landing page of your web application running on Netlify.
-  
-  The landing page should include the following:
-  
-  • Your full name and section
-  • Links to each of the lab assignments
-  • Link to the Kanbas application
-  • Links to all the relevant source code repositries
-  
-  The Kanbas application should include a link to navigate back to the landing page.
-  `
+  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+  const assignment = assignments.find((assignment: any) => assignment._id === aid);
+  const dispatch = useDispatch();
+
+  const assignmentTitle = aid === "new" ? "New Assignment" : assignment?.title;
+  const defaultAssignmentDescription = aid === "new" ? "Add a description for this assignment..." : assignment?.description;
+  const [hour, minute] = assignment.dueDate.time.split(":");
+  const dueDate24HT = assignment.dueDate.ampm === "AM"
+    ? (hour === "12" ? `00:${minute}` : `${hour.padStart(2, '0')}:${minute}`)
+    : (hour === "12" ? `${hour}:${minute}` : `${String(parseInt(hour, 10) + 12).padStart(2, '0')}:${minute}`);  
 
   return (
     <div id="wd-assignments-editor" className="form-group">
@@ -33,7 +27,7 @@ const AssignmentEditor = () => {
         <input
           type="text"
           id="wd-assignment-name"
-          defaultValue={`${assignment?.title}`}
+          defaultValue={assignmentTitle}
           className="form-control mb-4"
         />
         <textarea id="wd-description" rows={14} cols={50} className="form-control w-100" defaultValue={defaultAssignmentDescription} />
@@ -45,7 +39,7 @@ const AssignmentEditor = () => {
             <label htmlFor="wd-points" className="form-label">Points</label>
           </div>
           <div className="col-10 m-0 p-0">
-            <input id="wd-points" className="form-control" defaultValue={100} />
+            <input id="wd-points" className="form-control" defaultValue={assignment.points} />
           </div>
         </div>
         
@@ -178,7 +172,7 @@ const AssignmentEditor = () => {
               type="datetime-local"
               aria-label="Date and Time"
               id="wd-due-date"
-              defaultValue="2024-09-15T17:30"
+              defaultValue={`${assignment.dueDate.date}T${dueDate24HT}`}
               className="form-control"
             />
 

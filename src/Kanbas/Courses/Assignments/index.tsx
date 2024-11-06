@@ -1,15 +1,19 @@
-import { BsGripVertical } from "react-icons/bs";
-import AssignmentsControls from "./AssignmentsControls";
-import AssignmentsTitleBarControlButtons from "./AssignmentsTitleBarControlButtons";
-import "./index.css";
-import LessonControlButtons from "../Modules/LessonControlButtons";
-import AssignmentLeftControls from "./AssignmentLeftControls";
 import { useParams } from "react-router";
-import * as db from "../../Database";
+import { BsGripVertical } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+
+import AssignmentsControls from "./AssignmentsControls";
+import AssignmentLeftControls from "./AssignmentLeftControls";
+import AssignmentRightControls from "./AssignmentRightControls";
+import AssignmentsTitleBarControlButtons from "./AssignmentsTitleBarControlButtons";
+import { editAssignment, deleteAssignment } from "./reducer";
+import "./index.css";
 
 const Assignments = () => {
   const { cid } = useParams();
-  const assignments = db.assignments;
+  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+  const dispatch = useDispatch();
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   
   return (
     <div id="wd-assignments">
@@ -44,13 +48,17 @@ const Assignments = () => {
                       <p className="m-0 fs-6">
                         <span className="text-danger">Multiple Modules</span> |
                         <strong> Not available until </strong>
-                        May 6 at 12:00am | <br />
+                        {months[parseInt(assignment.availableFrom.date.split("/")[0]) - 1]} {parseInt(assignment.availableFrom.date.split("/")[1])} at {assignment.availableFrom.time + assignment.availableFrom.ampm.toLowerCase()} | <br />
                         <strong> Due </strong>
-                        May 13 at 11:59pm | 100 pts
+                        {months[parseInt(assignment.dueDate.date.split("/")[0]) - 1]} {parseInt(assignment.dueDate.date.split("/")[1])} at {assignment.dueDate.time + assignment.dueDate.ampm.toLowerCase()} | {assignment.points} pts
                       </p>
                     </div>
                   </div>
-                  <LessonControlButtons />
+                  <AssignmentRightControls
+                    assignmentId={assignment._id}
+                    deleteAssignment={(assignmentId) => dispatch(deleteAssignment(assignmentId))}
+                    editAssignment={(assignmentId) => dispatch(editAssignment(assignmentId))}
+                  />
                 </li>
               )
             )}
