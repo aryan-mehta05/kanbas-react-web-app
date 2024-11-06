@@ -17,18 +17,23 @@ const Modules = () => {
   const { cid } = useParams();
   const [moduleName, setModuleName] = useState("");
   const { modules } = useSelector((state: any) => state.modulesReducer);
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
   const dispatch = useDispatch();
   
   return (
     <div>
-      <ModulesControls
-        addModule={() => {
-          dispatch(addModule({ moduleName: moduleName, courseId: cid }));
-          setModuleName("");
-        }}
-        moduleName={moduleName}
-        setModuleName={setModuleName}
-      /><br /><br /><br /><br />
+      {currentUser.role === "FACULTY" && (
+        <>
+          <ModulesControls
+            addModule={() => {
+              dispatch(addModule({ moduleName: moduleName, courseId: cid }));
+              setModuleName("");
+            }}
+            moduleName={moduleName}
+            setModuleName={setModuleName}
+          /><br /><br /><br /><br />
+        </>
+      )}
       <ul id="wd-modules" className="list-group rounded-0">
         {modules
           .filter((module: any) => module.course === cid)

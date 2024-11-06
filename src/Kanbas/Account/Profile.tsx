@@ -10,6 +10,8 @@ const Profile = () => {
   const navigate = useNavigate();
   const { currentUser } = useSelector((state: any) => state.accountReducer);
 
+  const role = currentUser.role === "TA" ? "STUDENT" : currentUser.role;
+
   const signout = () => {
     dispatch(setCurrentUser(null));
     navigate("/Kanbas/Account/Signin");
@@ -32,13 +34,13 @@ const Profile = () => {
             defaultValue={profile.username}
             id="wd-username"
             className="form-control mb-2"
-            onChange={(e) => setProfile({ ...profile, username:  e.target.value })}
+            onChange={(e) => setProfile({ ...profile, username: e.target.value })}
           />
           <input
             defaultValue={profile.password}
             id="wd-password"
             className="form-control mb-2"
-            onChange={(e) => setProfile({ ...profile, password:  e.target.value })}
+            onChange={(e) => setProfile({ ...profile, password: e.target.value })}
           />
           <input
             defaultValue={profile.firstName}
@@ -50,13 +52,14 @@ const Profile = () => {
             defaultValue={profile.lastName}
             id="wd-lastname"
             className="form-control mb-2"
-            onChange={(e) => setProfile({ ...profile, lastName:  e.target.value })}
+            onChange={(e) => setProfile({ ...profile, lastName: e.target.value })}
           />
           <input
             defaultValue={profile.dob}
             id="wd-dob"
+            type="date"
             className="form-control mb-2"
-            onChange={(e) => setProfile({ ...profile, dob: e.target.value })} type="date"
+            onChange={(e) => setProfile({ ...profile, dob: e.target.value })}
           />
           <input
             defaultValue={profile.email}
@@ -65,9 +68,10 @@ const Profile = () => {
             onChange={ (e) => setProfile({ ...profile, email: e.target.value })}
           />
           <select
-            onChange={(e) => setProfile({ ...profile, role:  e.target.value })}
-            className="form-control mb-2"
+            defaultValue={role}
             id="wd-role"
+            className="form-control mb-2"
+            onChange={(e) => setProfile({ ...profile, role: e.target.value })}
           >
             <option value="USER">User</option>
             <option value="ADMIN">Admin</option>
