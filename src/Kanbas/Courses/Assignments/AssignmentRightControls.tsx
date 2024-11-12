@@ -1,17 +1,19 @@
+import { useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { FaPencil } from "react-icons/fa6";
 import { IoEllipsisVertical } from "react-icons/io5";
+import { useNavigate, useParams } from "react-router-dom";
 
 import GreenCheckmark from "../Modules/GreenCheckmark";
 import ConfirmationModal from "../../components/ConfirmationModal";
-import { useState } from "react";
 
-const AssignmentRightControls = ({ assignmentId, deleteAssignment, editAssignment }: {
+const AssignmentRightControls = ({ assignmentId, deleteAssignment }: {
   assignmentId: string;
   deleteAssignment: (assignmentId: string) => void;
-  editAssignment: (assignmentId: string) => void;
 }) => {
+  const navigate = useNavigate();
+  const { cid } = useParams();
   const [modalShow, setModalShow] = useState<boolean>(false);
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   
@@ -19,7 +21,7 @@ const AssignmentRightControls = ({ assignmentId, deleteAssignment, editAssignmen
     <div className="float-end">
       {currentUser.role === "FACULTY" && (
         <>
-          <FaPencil className="text-primary me-2" onClick={() => editAssignment(assignmentId)} />
+          <FaPencil className="text-primary me-2" onClick={() => navigate(`/Kanbas/Courses/${cid}/Assignments/${assignmentId}`)} />
           <FaTrash className="text-danger me-2" onClick={() => setModalShow(true)} />
         </>
       )}

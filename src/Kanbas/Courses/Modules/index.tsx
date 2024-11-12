@@ -26,7 +26,7 @@ const Modules = () => {
         <>
           <ModulesControls
             addModule={() => {
-              dispatch(addModule({ moduleName: moduleName, courseId: cid }));
+              dispatch(addModule({ name: moduleName, course: cid }));
               setModuleName("");
             }}
             moduleName={moduleName}
