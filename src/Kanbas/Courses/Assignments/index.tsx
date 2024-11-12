@@ -6,14 +6,13 @@ import AssignmentsControls from "./AssignmentsControls";
 import AssignmentLeftControls from "./AssignmentLeftControls";
 import AssignmentRightControls from "./AssignmentRightControls";
 import AssignmentsTitleBarControlButtons from "./AssignmentsTitleBarControlButtons";
-import { editAssignment, deleteAssignment } from "./reducer";
+import { deleteAssignment } from "./reducer";
 import "./index.css";
 
 const Assignments = () => {
   const { cid } = useParams();
-  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
   const dispatch = useDispatch();
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
   
   return (
     <div id="wd-assignments">
@@ -48,16 +47,15 @@ const Assignments = () => {
                       <p className="m-0 fs-6">
                         <span className="text-danger">Multiple Modules</span> |
                         <strong> Not available until </strong>
-                        {months[parseInt(assignment.availableFrom.date.split("/")[0]) - 1]} {parseInt(assignment.availableFrom.date.split("/")[1])} at {assignment.availableFrom.time + assignment.availableFrom.ampm.toLowerCase()} | <br />
+                        {assignment.availableFrom} | <br />
                         <strong> Due </strong>
-                        {months[parseInt(assignment.dueDate.date.split("/")[0]) - 1]} {parseInt(assignment.dueDate.date.split("/")[1])} at {assignment.dueDate.time + assignment.dueDate.ampm.toLowerCase()} | {assignment.points} pts
+                        {assignment.availableUntil} | {assignment.points} pts
                       </p>
                     </div>
                   </div>
                   <AssignmentRightControls
                     assignmentId={assignment._id}
                     deleteAssignment={(assignmentId) => dispatch(deleteAssignment(assignmentId))}
-                    editAssignment={(assignmentId) => dispatch(editAssignment(assignmentId))}
                   />
                 </li>
               )

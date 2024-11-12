@@ -22,8 +22,7 @@ const enrollmentSlice = createSlice({
         state.enrollments = state.enrollments.filter(
           (enrollment) => !(enrollment.user === userId && enrollment.course === courseId)
         );
-      }
-      else {
+      } else {
         state.enrollments.push({_id: new Date().getTime.toString(), user: userId, course: courseId });
       }
 
@@ -32,5 +31,5 @@ const enrollmentSlice = createSlice({
   }
 });
 
-export const { enrollmentStatus } = enrollmentSlice.actions;
+export const {enrollmentStatus} = enrollmentSlice.actions;
 export default enrollmentSlice.reducer;

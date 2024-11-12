@@ -1,22 +1,67 @@
-import { Link } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
-import { useParams } from "react-router";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, Link, useParams } from "react-router-dom";
 
+import { addAssignment, updateAssignment } from "./reducer";
 import "./index.css";
 
 const AssignmentEditor = () => {
   const { aid, cid } = useParams();
+  const dispatch = useDispatch();
+  const navigateBack = useNavigate();
+
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
   const assignment = assignments.find((assignment: any) => assignment._id === aid);
-  const dispatch = useDispatch();
 
-  const assignmentTitle = aid === "new" ? "New Assignment" : assignment?.title;
-  const defaultAssignmentDescription = aid === "new" ? "Add a description for this assignment..." : assignment?.description;
-  const [hour, minute] = assignment.dueDate.time.split(":");
-  const dueDate24HT = assignment.dueDate.ampm === "AM"
-    ? (hour === "12" ? `00:${minute}` : `${hour.padStart(2, '0')}:${minute}`)
-    : (hour === "12" ? `${hour}:${minute}` : `${String(parseInt(hour, 10) + 12).padStart(2, '0')}:${minute}`);  
+  // const assignmentTitle = aid === "new" ? "New Assignment" : assignment?.title;
+  // const defaultAssignmentDescription = aid === "new" ? "Add a description for this assignment..." : assignment?.description; 
+
+  const[title, setTitle] = useState("");
+  const[availableFrom, setAvailableFrom] = useState("");
+  const[availableUntil, setAvailableUntil] = useState( "");
+  const[dueDate, setDueDate] = useState("");
+  const[points, setPoints] = useState("");
+  const[description, setDescription] = useState("");
+
+  useEffect(() => {
+    if (assignment) {
+        setTitle(assignment.title);
+        setAvailableFrom(assignment.availableFrom);
+        setAvailableUntil(assignment.availableUntil);
+        setDueDate(assignment.dueDate);
+        setPoints(assignment.points);
+        setDescription(assignment.description);
+    }}, [assignment]);
+
+  const addOrEditAssignment = () => {
+    if (aid === "new"){
+      const newAssignment = {
+        _id: new Date().getTime().toString(), 
+        title,
+        course: cid,
+        availableFrom,
+        availableUntil,
+        dueDate,
+        points,
+        description,
+      };
+      dispatch(addAssignment(newAssignment))
+    } else {
+      const editedAssignment = {
+        _id: aid, 
+        title,
+        course: cid,
+        availableFrom,
+        availableUntil,
+        dueDate,
+        points,
+        description,
+      };
+      dispatch(updateAssignment(editedAssignment))
+    }
+    navigateBack(`/Kanbas/Courses/${cid}/Assignments`);
+  };
 
   return (
     <div id="wd-assignments-editor" className="form-group">
@@ -25,12 +70,22 @@ const AssignmentEditor = () => {
           <h3>Assignment Name</h3>
         </label>
         <input
-          type="text"
+          type="name"
           id="wd-assignment-name"
-          defaultValue={assignmentTitle}
           className="form-control mb-4"
+          placeholder={assignment?.title}
+          value = {title}
+          onChange={(e) => setTitle(e.target.value)}
         />
-        <textarea id="wd-description" rows={14} cols={50} className="form-control w-100" defaultValue={defaultAssignmentDescription} />
+        <textarea
+          id="wd-description"
+          rows={14}
+          cols={50}
+          className="form-control w-100"
+          placeholder={assignment?.description}
+          value = {description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
       </div>
 
       <div className="mt-3 container-fluid">
@@ -39,7 +94,13 @@ const AssignmentEditor = () => {
             <label htmlFor="wd-points" className="form-label">Points</label>
           </div>
           <div className="col-10 m-0 p-0">
-            <input id="wd-points" className="form-control" defaultValue={assignment.points} />
+            <input
+              id="wd-points"
+              className="form-control"
+              placeholder={assignment?.points} 
+              value = {points}
+              onChange={(e) => setPoints(e.target.value)}
+            />
           </div>
         </div>
         
@@ -169,11 +230,13 @@ const AssignmentEditor = () => {
               Due
             </label>
             <input
-              type="datetime-local"
+              type="text"
               aria-label="Date and Time"
               id="wd-due-date"
-              defaultValue={`${assignment.dueDate.date}T${dueDate24HT}`}
               className="form-control"
+              placeholder = {assignment?.dueDate}
+              value = {dueDate}
+              onChange={(e) => setDueDate(e.target.value)}
             />
 
             <div className="d-flex gap-3 mt-3 w-100">
@@ -182,11 +245,13 @@ const AssignmentEditor = () => {
                   Available from
                 </label>
                 <input
-                  type="datetime-local"
+                  type="text"
                   aria-label="Date and Time"
                   id="wd-available-from"
-                  defaultValue="2024-09-01T17:30"
                   className="form-control"
+                  placeholder={assignment?.availableFrom}
+                  value = {availableFrom}
+                  onChange={(e) => setAvailableFrom(e.target.value)}
                 />
               </div>
 
@@ -195,11 +260,12 @@ const AssignmentEditor = () => {
                   Until
                 </label>
                 <input
-                  type="datetime-local"
+                  type="date"
                   aria-label="Date and Time"
                   id="wd-available-until"
-                  defaultValue="2024-09-19T17:30"
                   className="form-control"
+                  value = {availableUntil}
+                  onChange={(e) => setAvailableUntil(e.target.value)}
                 />
               </div>
             </div>
@@ -216,12 +282,13 @@ const AssignmentEditor = () => {
         >
           Cancel
         </Link>
-        <Link
+        <button
+          type="button"
           className="btn btn-lg btn-danger"
-          to={`/Kanbas/Courses/${cid}/Assignments`}
+          onClick={addOrEditAssignment}
         >
           Save
-        </Link>
+        </button>
       </div>
     </div>
   );
