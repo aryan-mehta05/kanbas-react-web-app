@@ -1,3 +1,7 @@
+import PathParameters from "./PathParameters";
+import QueryParameters from "./QueryParameters";
+import WorkingWithArrays from "./WorkingWithArrays";
+import WorkingWithObjects from "./WorkingWithObjects";
 import EnvironmentVariables from "./EnvironmentVariables";
 
 const REMOTE_SERVER = process.env.REACT_APP_REMOTE_SERVER;
@@ -14,7 +18,12 @@ const Lab5 = () => {
           Welcome
         </a>
       </div><hr/>
+
       <EnvironmentVariables />
+      <PathParameters />
+      <QueryParameters />
+      <WorkingWithObjects />
+      <WorkingWithArrays />
     </div>
   );
 };
