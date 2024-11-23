@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
+import * as client from "./client";
 import { setCurrentUser } from "./reducer";
 
 const Profile = () => {
@@ -10,9 +11,15 @@ const Profile = () => {
   const navigate = useNavigate();
   const { currentUser } = useSelector((state: any) => state.accountReducer);
 
-  const role = currentUser.role === "TA" ? "STUDENT" : currentUser.role;
+  const role = (currentUser?.role === "TA" ? "STUDENT" : currentUser?.role) || "USER";
 
-  const signout = () => {
+  const updateProfile = async () => {
+    const updatedProfile = await client.updateUser(profile);
+    dispatch(setCurrentUser(updatedProfile));
+  };
+
+  const signout = async () => {
+    await client.signout();
     dispatch(setCurrentUser(null));
     navigate("/Kanbas/Account/Signin");
   };
@@ -78,6 +85,9 @@ const Profile = () => {
             <option value="FACULTY">Faculty</option>
             <option value="STUDENT">Student</option>
           </select>
+          <button onClick={updateProfile} className="btn btn-primary w-100 mb-2" id="wd-update-profile">
+            Update
+          </button>
           <button onClick={signout} className="btn btn-danger w-100 mb-2" id="wd-signout-btn">
             Sign out
           </button>

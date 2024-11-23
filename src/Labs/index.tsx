@@ -28,10 +28,17 @@ const Labs = () => {
           Jose Annunziato
         </p>
         <p>
-          Link to my <a id="wd-github" href="https://github.com/aryan-mehta05/kanbas-react-web-app.git">
+          Link to my <a id="wd-github-client" href="https://github.com/aryan-mehta05/kanbas-react-web-app.git">
             <strong>GitHub</strong>
           </a> repository.
         </p>
+        <p>
+          Link to the <a id="wd-github-server" href="https://github.com/aryan-mehta05/kanbas-node-server-app.git">
+            <strong>GitHub</strong>
+          </a> repository for the node server code.
+        </p>
+        <p><a id="wd-netlify" href="https://wonderful-yeot-c88b8d.netlify.app"><strong>Netlify</strong> link.</a></p>
+        <p><a id="wd-render" href="https://kanbas-node-server-app-lpr6.onrender.com/"><strong>Render</strong> link.</a></p>
         <hr />
         <TOC />
         <hr />

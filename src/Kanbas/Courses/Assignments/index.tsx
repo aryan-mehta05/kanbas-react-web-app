@@ -1,18 +1,34 @@
 import { useParams } from "react-router";
+import { useCallback, useEffect } from "react";
 import { BsGripVertical } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 
+import * as AssignmentClient from "./client";
 import AssignmentsControls from "./AssignmentsControls";
 import AssignmentLeftControls from "./AssignmentLeftControls";
 import AssignmentRightControls from "./AssignmentRightControls";
 import AssignmentsTitleBarControlButtons from "./AssignmentsTitleBarControlButtons";
-import { deleteAssignment } from "./reducer";
+import { getAssignments, deleteAssignment } from "./reducer";
 import "./index.css";
 
 const Assignments = () => {
   const { cid } = useParams();
   const dispatch = useDispatch();
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+
+  const fetchAssignments = useCallback(async () => {
+    const data = await AssignmentClient.fetchAllAssignments();
+    dispatch(getAssignments(data));
+  }, [dispatch]);
+
+  const handleDeleteAssignment = async (id: string) => {
+      await AssignmentClient.deleteAssignment(id);
+      dispatch(deleteAssignment(id));
+    };
+
+  useEffect(() => {
+    fetchAssignments();
+  }, [fetchAssignments]);
   
   return (
     <div id="wd-assignments">
@@ -55,7 +71,7 @@ const Assignments = () => {
                   </div>
                   <AssignmentRightControls
                     assignmentId={assignment._id}
-                    deleteAssignment={(assignmentId) => dispatch(deleteAssignment(assignmentId))}
+                    deleteAssignment={(assignmentId) => handleDeleteAssignment(assignmentId)}
                   />
                 </li>
               )
